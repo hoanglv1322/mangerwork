@@ -1,6 +1,6 @@
 export const apiUrl =
 	process.env.NODE_ENV !== 'production'
-		? 'http://localhost:5000/api'
+		? 'https://manager-work.onrender.com/api'
 		: 'something'
 
 export const LOCAL_STORAGE_TOKEN_NAME = 'manager-work-app'
