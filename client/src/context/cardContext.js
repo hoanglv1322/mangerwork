@@ -105,6 +105,7 @@ const CardContextProvider = ({ children }) => {
 		updateCard,
 		deleteCard,
 		createCardCSV,
+		getAllCard,
 	}
 
 	//return

@@ -51,7 +51,7 @@ const InputImage = styled.div`
 `
 
 const CreateTable = (props) => {
-	const PF = 'http://localhost:5000/images/'
+	const PF = 'https://manager-work.onrender.com/images/'
 	const { show, handleClose, workPlaceId, table } = props
 	const { createTable, updateTable } = useContext(TableContext)
 	const [file, setFile] = useState(null)

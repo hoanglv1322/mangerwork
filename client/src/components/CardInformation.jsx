@@ -450,7 +450,7 @@ const Percent = styled.div`
 `
 
 const CardInformation = (props) => {
-	const PF = 'http://localhost:5000/images/'
+	const PF = 'https://manager-work.onrender.com/images/'
 	const {
 		show,
 		handleCloseCardInfor,

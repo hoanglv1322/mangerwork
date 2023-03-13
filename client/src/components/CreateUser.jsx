@@ -59,7 +59,7 @@ const InputImage = styled.div`
 `
 
 const CreateUser = (props) => {
-	const PF = 'http://localhost:5000/images/'
+	const PF = 'https://manager-work.onrender.com/images/'
 	const { show, handleClose } = props
 	const { registerUser } = useContext(AuthContext)
 	const [file, setFile] = useState(null)

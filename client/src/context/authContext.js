@@ -264,6 +264,7 @@ const AuthContextProvider = ({ children }) => {
 		resetPassword,
 		updatePassword,
 		notifyUser,
+		getAllUsers,
 	}
 
 	// return

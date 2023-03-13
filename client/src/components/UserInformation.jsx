@@ -136,7 +136,7 @@ const Title = styled.div`
 `
 
 const UserInformation = (props) => {
-	const PF = 'http://localhost:5000/images/'
+	const PF = 'https://manager-work.onrender.com/images/'
 	const { show, handleClose, user, updateUser } = props
 	const [file, setFile] = useState('')
 	const [userName, setUserName] = useState(user.username)

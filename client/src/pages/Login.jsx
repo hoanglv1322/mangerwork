@@ -3,6 +3,12 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useState, useContext } from 'react'
 import { AuthContext } from '../context/authContext'
 import Alert from 'react-bootstrap/Alert'
+import { WorkPlaceContext } from '../context/workPlaceContext'
+import { TableContext } from '../context/tableContext'
+import { CardContext } from '../context/cardContext'
+import { TaskContext } from '../context/taskContext'
+import { MessageContext } from '../context/messageContext'
+import { CommentContext } from '../context/commentContext'
 
 const Container = styled.div`
 	width: 100vw;
@@ -96,6 +102,19 @@ const Login = () => {
 		email: '',
 		password: '',
 	})
+
+	//use data context
+	const { getAllWorkPlaces } = useContext(WorkPlaceContext)
+
+	const { getAllTables } = useContext(TableContext)
+
+	const { getAllUsers } = useContext(AuthContext)
+
+	const { getAllCard } = useContext(CardContext)
+	const { getAllTask } = useContext(TaskContext)
+	const { getAllMessager } = useContext(MessageContext)
+	const { getAllComment } = useContext(CommentContext)
+
 	const [error, setError] = useState('')
 
 	const onchangeForm = (e) => {
@@ -108,6 +127,13 @@ const Login = () => {
 		try {
 			const loginData = await loginUser(loginForm)
 			if (loginData.success) {
+				getAllWorkPlaces()
+				getAllTables()
+				getAllUsers()
+				getAllCard()
+				getAllTask()
+				getAllMessager()
+				getAllComment()
 				if (loginData.user.isAdMin) {
 					navigation('/dashboard')
 				} else {
