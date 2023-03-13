@@ -1,6 +1,6 @@
 const Table = require('../models/Table')
 const User = require('../models/User')
-const sendMail = require('../config/SendEmail')
+const sendMail = require('../config/sendEmail')
 
 const CLIENT_URL = `${process.env.BASE_URL}`
 
