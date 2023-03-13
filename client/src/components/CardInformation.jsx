@@ -540,7 +540,10 @@ const CardInformation = (props) => {
 			data.append('file', file)
 			formCard.background = PF + filename
 			try {
-				await axios.post('http://localhost:5000/api/upload', data)
+				await axios.post(
+					'https://manager-work.onrender.com/api/upload',
+					data
+				)
 			} catch (err) {}
 		}
 		formCard.labels = labels

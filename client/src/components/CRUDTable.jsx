@@ -83,7 +83,10 @@ const CreateTable = (props) => {
 			data.append('file', file)
 			tableData.background = PF + filename
 			try {
-				await axios.post('http://localhost:5000/api/upload', data)
+				await axios.post(
+					'https://manager-work.onrender.com/api/upload',
+					data
+				)
 			} catch (err) {}
 		}
 		try {
