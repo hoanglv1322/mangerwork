@@ -1,6 +1,6 @@
 const User = require('../models/User')
 const WorkPlace = require('../models/WorkPlace')
-const sendMail = require('../config/SendEmail')
+const sendMail = require('../config/sendEmail')
 
 const CLIENT_URL = `${process.env.BASE_URL}`
 
