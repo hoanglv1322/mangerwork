@@ -83,18 +83,18 @@ class AuthController {
 				password: hashPassword,
 			})
 
-			// //send email to user
-			// const url = `${CLIENT_URL}`
-			// sendMail(email, url, txt)
+			//send email to user
+			const url = `${CLIENT_URL}`
+			sendMail(email, url, txt)
 
 			//save account in database
 			await newUser.save()
 
-			// //return token
-			// const accessToken = await jwt.sign(
-			// 	{ userID: newUser._id },
-			// 	process.env.ACCESS_TOKEN_SECRET
-			// )
+			//return token
+			const accessToken = await jwt.sign(
+				{ userID: newUser._id },
+				process.env.ACCESS_TOKEN_SECRET
+			)
 
 			res.status(200).json({
 				success: true,
@@ -130,7 +130,7 @@ class AuthController {
 			}
 
 			//user not verify email
-			if (user.status === 'block') {
+			if (!user.status) {
 				return res.status(400).json({
 					success: false,
 					message: 'Email is not verify, please verify email first',

@@ -4,6 +4,7 @@ export const ADD_USER = 'ADD_USER'
 export const ALL_USER = 'ALL_USER'
 export const LOGOUT = 'LOGOUT_USER'
 export const CREATE_USER = 'CREATE_USER'
+export const DELETE_USER = 'DELETE_USER'
 
 export const ADD_TABLE = 'ADD_TABLE'
 export const UPDATE_TABLE = 'UPDATE_TABLE'

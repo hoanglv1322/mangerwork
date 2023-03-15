@@ -9,6 +9,7 @@ import {
 	CREATE_USER,
 	UPDATE_USER,
 	ALL_USER,
+	DELETE_USER,
 } from '../reducers/type'
 
 export const AuthContext = createContext()
@@ -250,6 +251,22 @@ const AuthContextProvider = ({ children }) => {
 		}
 	}
 
+	const deleteUser = async (userId) => {
+		try {
+			const res = await axios.delete(`${apiUrl}/user/delete/${userId}`)
+			if (res.data.success) {
+				dispatch({
+					type: DELETE_USER,
+					payload: { user: res.data.user },
+				})
+			}
+			return res.data
+		} catch (error) {
+			if (error.response.data) return error.response.data
+			return { success: false, message: error.message }
+		}
+	}
+
 	//context data
 	const authContextData = {
 		loginUser,
@@ -265,6 +282,7 @@ const AuthContextProvider = ({ children }) => {
 		updatePassword,
 		notifyUser,
 		getAllUsers,
+		deleteUser,
 	}
 
 	// return

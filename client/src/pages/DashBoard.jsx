@@ -162,6 +162,7 @@ const DashBoard = () => {
 	const {
 		authState: { allUsers },
 		notifyUser,
+		deleteUser,
 	} = useContext(AuthContext)
 
 	const {
@@ -172,7 +173,19 @@ const DashBoard = () => {
 		setAllAccounts(allUsers.filter((user) => user.isAdMin === false))
 	}, [allUsers])
 
-	const deleteUserHandler = async () => {}
+	const deleteUserHandler = async () => {
+		try {
+			const res = await deleteUser(user._id)
+			if (res.success) {
+				setError(`Đã xóa người dùng ${user.username} thành công.`)
+			}
+			setTimeout(() => {
+				setError('')
+			}, 3000)
+		} catch (error) {
+			console.log(error)
+		}
+	}
 	const EditUserHandler = async () => {}
 	const DeleteCard = async () => {}
 
@@ -313,6 +326,11 @@ const DashBoard = () => {
 							<Add />
 							Thêm người dùng
 						</Title>
+						{error && (
+							<Alert variant="warning" className="alert-error">
+								{error}
+							</Alert>
+						)}
 						<Table striped bordered hover>
 							<thead>
 								<tr>

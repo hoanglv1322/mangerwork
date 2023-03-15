@@ -1,4 +1,11 @@
-import { SET_AUTH, LOGOUT, UPDATE_USER, ALL_USER, CREATE_USER } from './type'
+import {
+	SET_AUTH,
+	LOGOUT,
+	UPDATE_USER,
+	ALL_USER,
+	CREATE_USER,
+	DELETE_USER,
+} from './type'
 
 export const authReducer = (state, action) => {
 	const {
@@ -42,6 +49,14 @@ export const authReducer = (state, action) => {
 			return {
 				...state,
 				user,
+			}
+		}
+		case DELETE_USER: {
+			return {
+				...state,
+				allUsers: state.allUsers.filter(
+					(card) => card._id !== user._id
+				),
 			}
 		}
 		default:
