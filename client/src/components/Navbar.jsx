@@ -56,6 +56,7 @@ const Item = styled.div`
 	color: #fff;
 	cursor: pointer;
 `
+
 const SearchContainer = styled.div`
 	margin-left: 32px;
 	display: flex;

@@ -5,6 +5,7 @@ import { WorkPlaceContext } from '../context/workPlaceContext'
 import { TableContext } from '../context/tableContext'
 import { useNavigate } from 'react-router-dom'
 import Workplace from './Workplace'
+import { CardContext } from '../context/cardContext'
 import {
 	TableChart,
 	Add,
@@ -124,6 +125,21 @@ const Title = styled.div`
 		margin-right: 10px;
 	}
 `
+const Process = styled.div`
+	border: 1px solid #ccc;
+	width: 100%;
+	height: 8px;
+	position: absolute;
+	bottom: 0;
+	display: flex;
+	align-items: center;
+`
+
+const Percent = styled.div`
+	height: 8px;
+	background-color: #15df3d;
+	margin-bottom: 0 !important;
+`
 
 const BoardHome = () => {
 	//get data context
@@ -185,6 +201,10 @@ const BoardHome = () => {
 			console.error(error)
 		}
 	}
+
+	const {
+		cardState: { allCards },
+	} = useContext(CardContext)
 
 	//update status table
 	const updateStatusTable = async (e) => {
@@ -275,6 +295,28 @@ const BoardHome = () => {
 											color: 'rgb(255,255,0)',
 										}}
 									/>
+									<Process>
+										<Percent
+											style={{
+												width: `${
+													(
+														allCards.filter(
+															(c) =>
+																c.tableId ===
+																	table._id &&
+																c.progress ===
+																	'Done'
+														).length /
+														allCards.filter(
+															(c) =>
+																c.tableId ===
+																table._id
+														).length
+													).toFixed(2) * 100
+												}%`,
+											}}
+										/>
+									</Process>
 								</Table>
 							))}
 					</ListTables>
@@ -306,6 +348,28 @@ const BoardHome = () => {
 										id={table._id}
 										onClick={updateStatusTable}
 									/>
+									<Process>
+										<Percent
+											style={{
+												width: `${
+													(
+														allCards.filter(
+															(c) =>
+																c.tableId ===
+																	table._id &&
+																c.progress ===
+																	'Done'
+														).length /
+														allCards.filter(
+															(c) =>
+																c.tableId ===
+																table._id
+														).length
+													).toFixed(2) * 100
+												}%`,
+											}}
+										/>
+									</Process>
 								</Table>
 							))}
 					</ListTables>
@@ -337,6 +401,28 @@ const BoardHome = () => {
 										id={table._id}
 										onClick={updateStatusTable}
 									/>
+									<Process>
+										<Percent
+											style={{
+												width: `${
+													(
+														allCards.filter(
+															(c) =>
+																c.tableId ===
+																	table._id &&
+																c.progress ===
+																	'Done'
+														).length /
+														allCards.filter(
+															(c) =>
+																c.tableId ===
+																table._id
+														).length
+													).toFixed(2) * 100
+												}%`,
+											}}
+										/>
+									</Process>
 								</Table>
 							))}
 					</ListTables>

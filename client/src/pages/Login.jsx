@@ -38,6 +38,16 @@ const Wrapper = styled.form`
 		display: flex;
 		align-items: center;
 	}
+	@media only screen and (max-width: 480px) {
+		width: 80%;
+		padding: 24px;
+	}
+	@media only screen and (max-width: 700px) and (min-width: 485px) {
+		width: 70%;
+	}
+	@media only screen and (max-width: 900px) and (min-width: 705px) {
+		width: 50%;
+	}
 `
 const Title = styled.h1`
 	color: teal;
