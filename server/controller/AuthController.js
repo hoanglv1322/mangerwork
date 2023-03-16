@@ -133,7 +133,7 @@ class AuthController {
 			}
 
 			//user not verify email
-			if (user.isActive) {
+			if (!user.isActive) {
 				return res.status(400).json({
 					success: false,
 					message: 'Email is not verify, please verify email first',

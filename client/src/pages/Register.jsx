@@ -274,9 +274,12 @@ const Register = () => {
 			)}
 			{isOpenCode && (
 				<Confirm>
-					<Alert variant="warning" className="alert-error">
-						{errorCode}
-					</Alert>
+					{errorCode && (
+						<Alert variant="warning" className="alert-error">
+							{errorCode}
+						</Alert>
+					)}
+
 					<Form>
 						<Form.Group className="mb-3" controlId="formBasicEmail">
 							<Form.Label>Nhập mã code</Form.Label>
