@@ -4,12 +4,6 @@ const bcrypt = require('bcrypt')
 const sendMail = require('../config/sendEmail')
 
 const CLIENT_URL = `${process.env.BASE_URL_VERIFYUSER}`
-const txt = {
-	title: 'WELLCOME TO WEB MANAGER WORK',
-	des: 'Congratulations! You are almost set to start using Manager Work. Just click the button below to validate your email address.',
-	button: 'Verify Email',
-}
-
 class AuthController {
 	//check user
 	checkAuth = async (req, res) => {
@@ -69,7 +63,7 @@ class AuthController {
 			if (account) {
 				return res.status(400).json({
 					success: false,
-					message: ['email already exits'],
+					message: ['email đã được dùng để đăng ký tài khoản'],
 				})
 			}
 			//all good
@@ -83,9 +77,17 @@ class AuthController {
 				password: hashPassword,
 			})
 
+			const code = Math.floor(Math.random() * (999999 - 100000) + 100000)
+
+			const txtCode = {
+				title: 'WELLCOME TO WEB MANAGER WORK',
+				des: 'Chúc mừng bạn đã đăng ký thành công tài khoản, dưới đây là mã xác thực để bạn kích hoạt tài khoản .',
+				button: code,
+			}
+
 			//send email to user
 			const url = `${CLIENT_URL}`
-			sendMail(email, url, txt)
+			sendMail(email, url, txtCode)
 
 			//save account in database
 			await newUser.save()
@@ -98,8 +100,9 @@ class AuthController {
 
 			res.status(200).json({
 				success: true,
-				message: 'Register account success!!!, please verify email!',
+				message: 'Đăng ký thành công!, hãy xác thực email của bạn!',
 				user: newUser,
+				code,
 			})
 		} catch (error) {
 			res.status(500).json({
@@ -129,13 +132,13 @@ class AuthController {
 				})
 			}
 
-			// //user not verify email
-			// if (user.isActive) {
-			// 	return res.status(400).json({
-			// 		success: false,
-			// 		message: 'Email is not verify, please verify email first',
-			// 	})
-			// }
+			//user not verify email
+			if (user.isActive) {
+				return res.status(400).json({
+					success: false,
+					message: 'Email is not verify, please verify email first',
+				})
+			}
 
 			//user founded
 			const match = await bcrypt.compare(password, user.password)
@@ -173,15 +176,15 @@ class AuthController {
 			if (!user) {
 				return res.status(400).json({
 					success: false,
-					message: 'Email is not registed account',
+					message: 'Email chưa được đăng ký tài khoản',
 				})
 			}
 
 			const code = Math.floor(Math.random() * (999999 - 100000) + 100000)
 
 			const txtCode = {
-				title: 'Code num to rest password',
-				des: 'Below is code num to you reset your password',
+				title: 'Reset mật khẩu',
+				des: 'Dưới đây là mã xác thực để bạn reset lại mật khẩu',
 				button: code,
 			}
 
